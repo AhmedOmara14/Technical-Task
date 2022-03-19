@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/allCompetitionsFragment">
+
+
+    <fragment
+        android:id="@+id/favoriteCompetitionsFragment"
+        android:name="com.task.football_league.presentation.favorite_competitions.FavoriteCompetitionsFragment"
+        android:label="fragment_favorite_ocompetitions"
+        tools:layout="@layout/fragment_favorite_competitions" />
+    <fragment
+        android:id="@+id/allCompetitionsFragment"
+        android:name="com.task.football_league.presentation.all_competitions.AllCompetitionsFragment"
+        android:label="fragment_all_competitions"
+        tools:layout="@layout/fragment_all_competitions" >
+        <action
+            android:id="@+id/action_allCompetitionsFragment_to_competitionDetailsFragment"
+            app:destination="@id/competitionDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/competitionDetailsFragment"
+        android:name="com.task.football_league.presentation.competitions_details.CompetitionDetailsFragment"
+        android:label="fragment_competition_details"
+        tools:layout="@layout/fragment_competition_details" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_competitionDetailsFragment_to_allCompetitionsFragment"
+            app:destination="@id/allCompetitionsFragment" />
+        <argument
+            android:name="ComptetionTeam"
+            app:argType="com.task.football_league.domain.model.competitions_team.CompetitionTeam" />
+        <action
+            android:id="@+id/action_competitionDetailsFragment_to_allTeamPlayersFragment"
+            app:destination="@id/allTeamPlayersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allTeamPlayersFragment"
+        android:name="com.task.football_league.presentation.all_team_players.AllTeamPlayersFragment"
+        android:label="fragment_all_team_players"
+        tools:layout="@layout/fragment_all_team_players" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="competitionTeam"
+            app:argType="com.task.football_league.domain.model.competitions_team.CompetitionTeam" />
+        <argument
+            android:name="specificTeam"
+            app:argType="com.task.football_league.domain.model.competitions_team.Team" />
+        <action
+            android:id="@+id/action_allTeamPlayersFragment_to_competitionDetailsFragment"
+            app:destination="@id/competitionDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.task.football_league.presentation.favorite_competitions.auth.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_authFragment_to_favoriteCompetitionsFragment"
+            app:destination="@id/favoriteCompetitionsFragment" />
+    </fragment>
+</navigation>
